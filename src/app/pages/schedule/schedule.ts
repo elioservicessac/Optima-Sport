@@ -23,6 +23,7 @@ export class SchedulePage implements OnInit {
   ios: boolean;
   dayIndex = 0;
   queryText = '';
+  filterTerm: string;
   segment = 'all';
   excludeTracks: any = [];
   shownSessions: any = [];
@@ -38,6 +39,21 @@ export class SchedulePage implements OnInit {
   tipo_cuenta: any;
   puedevervideos: string;
   isloggedin: any;
+  step: any;
+  videos_barra: any;
+  videosendata_barra: any;
+  videosenbarraresultado: any;
+  videosenbarraresultadodebusqueda: any;
+  diasporcomas: any;
+  videosotros: any;
+  todosbusquedaglobal: any;
+  channelId: string;
+  playlists: any;
+  listasderepro: any;
+  // resultadostodos: any;
+  resultadostodos:  Array<any> = [];
+  codigos_validos_activar: any;
+  respuestaverificarcodigo: any;
 
   constructor(
     private menu: MenuController,
@@ -58,7 +74,6 @@ export class SchedulePage implements OnInit {
   
   {
 
-
     this.consultacategoria();
 
 
@@ -71,10 +86,17 @@ export class SchedulePage implements OnInit {
   }
 
   consultacategoria(){
+
+    this.step='1';
     this.puedevervideos="no";
 
     this.route.params.subscribe(params => {
       console.log('params',params);
+      //limpiamos las variables
+      this.step='1';
+      this.showSearchbar=false;
+      this.filterTerm='';
+
       this.nombrecategoriaenvista=params.nombreplaylist;
       let listId = params.id;
       this.id_categoria= params.id;
@@ -262,4 +284,83 @@ export class SchedulePage implements OnInit {
     await loading.onWillDismiss();
     fab.close();
   }
+
+  changecodigo(event){
+    this.codigos_validos_activar=event.target.value;
+  }
+
+  verificar(){
+
+
+    var dataverificarcodigo = {
+      nombre_solicitud:'verificarcodigo',
+      codigos_validos_activar:this.codigos_validos_activar,
+    }
+      this.json.variasfunciones(dataverificarcodigo).subscribe((res: any ) =>{
+            console.log(' respuesta verificarcodigo ',res);
+            this.respuestaverificarcodigo=res;
+            });
+
+  }
+
+
+  paso2(){
+    this.step='2';
+    console.log('seprocedera al paso 2');
+    // this.json.barrabusqueda();
+    // this.resultadostodos=null;
+    this.resultadostodos.length = 0;
+
+    this.channelId="UCWHrwVR0pX247lyy14xY7cA";
+    this.playlists = this.json.getPlaylistsForChannel(this.channelId);
+    this.playlists.subscribe(data => {
+      console.log('playlists full api respuesta: ', data);
+      this.listasderepro=data.items;
+      console.log('solo listas de reproduccion: ', data.items);
+
+      this.videosendata_barra=data.items;
+      console.log('videosendata_barra: ', this.videosendata_barra);
+      for (var i=0; i<this.videosendata_barra.length; i++) { 
+  
+        this.videosotros = this.json.getListVideos(this.videosendata_barra[i].id);
+        this.videosotros.subscribe(data2 => {
+  
+          console.log('data2',data2.items);
+  
+          for (var f=0; f<data2.items.length; f++) { 
+            console.log('data en f', data2.items[f]);
+            this.resultadostodos.push(data2.items[f]);
+            console.log('resultadostodos',this.resultadostodos);
+          }
+  
+        });
+        
+      }
+
+    });
+
+
+
+  
+
+
+
+  }
+
+  
+  volverapaso1(){
+    this.step='1';
+    this.showSearchbar=false;
+    this.filterTerm='';
+    console.log('seprocedera al paso 2'); 
+  }
+
+  closeycancelboton(){
+    this.step='1';
+    this.showSearchbar=false;
+    this.filterTerm='';
+  }
+
+  
+
 }

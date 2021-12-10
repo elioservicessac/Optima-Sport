@@ -18,7 +18,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 export class JsonService {
 
   apiKey = 'AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y';
-
+  channelId = 'UCWHrwVR0pX247lyy14xY7cA';
 
   public nombrecategoriaservicio: any;
   public datacategoriaservicio: any;
@@ -68,12 +68,17 @@ export class JsonService {
 
 
   getListVideos(listId) {
-    return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + this.apiKey + '&part=snippet&playlistId=' + listId)
+    return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + this.apiKey + '&part=snippet&playlistId=' + listId + '&maxResults=20')
     
   }
 
-  
 
+  // https://www.googleapis.com/youtube/v3/search?channelId=UCWHrwVR0pX247lyy14xY7cA
+
+  barrabusqueda() {
+    return this.http.get('https://www.googleapis.com/youtube/v3/search?channelId='+this.channelId+'&key=AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y&part=snippet&maxResults=20')
+  
+  }
 
 
 }

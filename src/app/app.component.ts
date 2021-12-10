@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
   dark = true;
   listasderepro: any;
   enviarporparams:any;
+ 
   constructor(
     public alertCtrl: AlertController,
     private youtube: YoutubeVideoPlayer,
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit {
   {
     this.initializeApp();
 
+
     this.channelId="UCWHrwVR0pX247lyy14xY7cA";
     this.playlists = this.json.getPlaylistsForChannel(this.channelId);
     this.playlists.subscribe(data => {
@@ -81,6 +83,13 @@ export class AppComponent implements OnInit {
     });
     
   }
+
+  iralpaneladmin(){
+    // this.router.navigate(['/signup']);
+    this.router.navigateByUrl('/signup');
+    this.menu.close();
+  }
+
 
 
   searchPlaylists() {

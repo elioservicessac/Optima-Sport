@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Signup</ion-title>
+    <ion-title>Inicio especial</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,34 +13,63 @@
     <img src="assets/img/appicon.svg" alt="Ionic Logo">
   </div>
 
-  <form #signupForm="ngForm" novalidate>
-    <ion-list lines="none">
-      <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
-        </ion-input>
-      </ion-item>
-      <ion-text color="danger">
-        <p [hidden]="username.valid || submitted === false" class="ion-padding-start">
-          Username is required
-        </p>
-      </ion-text>
 
+  <ion-grid *ngIf="this.json.tipo_cuenta==999">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text style="color:green;" >Bienvenido al panel administrador.</ion-text>
+      </ion-col>
+    </ion-row>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text color="primary" >agregar codigo de activacion:</ion-text>
       <ion-item>
-        <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
-        </ion-input>
+        <ion-label position="floating">Codigo:</ion-label>
+        <ion-input (ionChange)="changecodigosvalidosactivar($event)" size="small"></ion-input>
       </ion-item>
-      <ion-text color="danger">
-        <p [hidden]="password.valid || submitted === false" class="ion-padding-start">
-          Password is required
-        </p>
-      </ion-text>
-    </ion-list>
+      
+      <ion-button  (click)="reingresar()" color="danger" ><ion-text style="font-weight: 500;">INGRESAR</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 
-    <div class="ion-padding">
-      <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Create</ion-button>
-    </div>
-  </form>
+    <ion-row class="ion-align-items-center">
+    <ion-col size="6" class="ion-text-center">
+      <ion-text color="primary" >Codigo:</ion-text>
+
+    </ion-col>
+    <ion-col size="6" class="ion-text-center">
+    <ion-text color="primary" >estado:</ion-text>
+    </ion-col>
+    </ion-row>
+
+    <section *ngFor="let cadacodigo of this.respuestaobtenercodigosoptimacodigosdeactivacion">
+
+
+    <ion-row class="ion-align-items-center">
+    <ion-col size="6" class="ion-text-center">
+      <ion-text color="primary" >{{cadacodigo.codigos_validos_activar}}</ion-text>
+
+    </ion-col>
+    <ion-col size="6" class="ion-text-center">
+      <ion-text style="color:green" *ngIf="cadacodigo.status=='1'" color="primary" >disponible</ion-text>
+      <ion-text style="color:red" *ngIf="cadacodigo.status=='0'" color="primary" >usado</ion-text>
+
+    </ion-col>
+    </ion-row>
+
+  </section>
+  
+
+  </ion-grid>
+
+
+  <ion-grid *ngIf="this.json.tipo_cuenta!=999">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text style="color:red;">No esta autorizado para navegar aqui.</ion-text>
+      </ion-col>
+      </ion-row>
+  </ion-grid>
 
 </ion-content>

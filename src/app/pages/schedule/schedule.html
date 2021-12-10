@@ -3,10 +3,47 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <!-- <ion-menu-button></ion-menu-button> -->
+    </ion-buttons>
+
+    <ion-title *ngIf="!ios && !showSearchbar"></ion-title>
+    <ion-grid>
+      <ion-row  class="ion-no-padding ion-align-content-center vertical-center ion-align-items-center">
+        <ion-col size="10.6">
+          <!-- <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="filterTerm" (ionChange)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar> -->
+          <ion-searchbar  *ngIf="showSearchbar" showCancelButton="always" (ionClear)="closeycancelboton()" showCloseButton="false" (ionCancel)="closeycancelboton()" placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+ 
+        </ion-col>
+        <ion-col class="ion-no-padding ion-align-content-center vertical-center ion-align-items-center" no-padding size="1.4">
+          <ion-button (click)="paso2()" style="margin-left: -4px;" *ngIf="showSearchbar" >
+            <ion-icon style="margin-left: -2px;" name="arrow-forward-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-buttons slot="end">
+      <ion-button [disabled]="this.json.tipo_cuenta==0" *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <!-- <ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
+        <span *ngIf="ios">Filter</span>
+        <span *ngIf="!ios">
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </span>
+      </ion-button> -->
+    </ion-buttons>
+
 </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true">
+
+
+
+<section *ngIf="this.step=='1'">
 <h3 color="primary" style="color:#f07404; text-align:center;">{{this.nombrecategoriaenvista}}</h3>
 
 <ion-grid *ngIf="videosendata&&this.isloggedin=='si'&&this.puedevervideos=='si'">
@@ -15,7 +52,7 @@
       <ion-row>
           <ion-col size="4">
             <!-- <ion-thumbnail item-start> -->
-              <img width="100%" height="100%" style="border-radius: 10px;"  [src]="video.snippet.thumbnails.standard.url">
+              <img width="120px" height="90px" style="border-radius: 10px;"  [src]="video.snippet.thumbnails.default.url">
             <!-- </ion-thumbnail> -->
           </ion-col>
           <ion-col size="8">
@@ -46,12 +83,6 @@
 </ion-grid>
 
 
-<ion-grid *ngIf="!videosendata&&this.isloggedin=='si'&&this.puedevervideos=='si'">
-  <ion-text><--Seleccione una categoria</ion-text>
-
-</ion-grid>
-
-
 
 <ion-grid *ngIf="this.puedevervideos=='no'&&this.isloggedin=='si'">
   <ion-row class="ion-align-items-center">
@@ -61,14 +92,14 @@
       <ion-card>
           <ion-item size="small">
             <ion-label position="floating">Codigo de activación</ion-label>
-            <ion-input></ion-input>
+            <ion-input (ionChange)="changecodigo($event)"></ion-input>
           </ion-item>
       </ion-card>
     </ion-col>
   </ion-row>
 <ion-row class="ion-align-items-center">
   <ion-col size="12" class="ion-text-center">
-    <ion-button  (click)="sinfuncion()" color="success" ><ion-text style="font-weight: 500;">Verificar Cuenta</ion-text>
+    <ion-button  (click)="verificar()" color="success" ><ion-text style="font-weight: 500;">Verificar Cuenta</ion-text>
     </ion-button> <br>
     <ion-text  (click)="sinfuncion()" color="primary" >Si no dispone del codigo de activación puede adquirirlo mediante el siguiente enlace:</ion-text><br>
     <ion-button  (click)="sinfuncion()" color="primary" ><ion-text style="font-weight: 500;">Adquirir Código</ion-text>
@@ -92,9 +123,72 @@
 </ion-row>
 </ion-grid>
 
+</section>
+
+<section *ngIf="this.step!='2'&&this.step=='1'">
+
+  <ion-grid style="text-align: center;" *ngIf="!videosendata&&this.isloggedin=='si'&&this.puedevervideos=='si'">
+    <h1 style="color: #f07404;" color="primary">Seleccione una categoria</h1>
+      <img style="margin-top: -50px; transform: rotate(90deg); width:40%; height:40%" width="80%" height="80%" src="./../../../assets/img/categoria_seleccione6.gif ">
+  
+  </ion-grid>
+
+</section>
 
 
 
+
+
+<section *ngIf="this.step=='2'">
+
+  <ion-grid *ngIf="resultadostodos&&this.isloggedin=='si'&&this.puedevervideos=='si'">
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="volverapaso1()" color="danger" ><ion-icon color="primary" name="backspace-outline"></ion-icon>
+        <ion-text style="font-weight: 500;">VOLVER</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+
+    <button style="background-color: transparent;" *ngFor="let video of resultadostodos | filter:filterTerm" (click)="openVideo(video)" >
+  
+        <ion-row>
+            <ion-col size="4">
+              <!-- <ion-thumbnail item-start> -->
+                <img width="120px" height="90px" style="border-radius: 10px;"  [src]="video.snippet.thumbnails.default.url">
+              <!-- </ion-thumbnail> -->
+            </ion-col>
+            <ion-col size="8">
+                  <h2 style="color:#f07404; font-family: 'Times New Roman', Times, serif;" color="primary">{{video.snippet.title}}</h2>
+                  <!-- <p>{{ video.snippet.description }}</p> -->
+             </ion-col>
+        </ion-row>
+    </button>
+    <ion-fab style="background-color: transparent;" slot="fixed" vertical="bottom" horizontal="end" #fab>
+      <ion-fab-button>
+        <ion-icon name="share-social"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+          <ion-icon name="logo-vimeo"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </ion-grid>
+
+</section>
 
 
 

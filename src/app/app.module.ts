@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
 @NgModule({
   imports: [
+    Ng2SearchPipeModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
