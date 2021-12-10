@@ -56,6 +56,7 @@ export class SchedulePage implements OnInit {
   respuestaverificarcodigo: any;
 
   constructor(
+    private loadingController: LoadingController,
     private menu: MenuController,
     private plt: Platform,
     private youtube: YoutubeVideoPlayer,
@@ -289,9 +290,18 @@ export class SchedulePage implements OnInit {
     this.codigos_validos_activar=event.target.value;
   }
 
-  verificar(){
+  async verificar(){
 
-
+    const mensajeactualizando = await this.loadingController.create({
+      message: 'Cargando, porfavor espere...',spinner: 'bubbles',duration: 20000,
+      });
+      const exitosa = await this.loadingController.create({
+        message: 'Usuario verificado!, debe reingresar',spinner: 'bubbles',duration: 4700,
+        });
+        const verifique = await this.loadingController.create({
+          message: 'verifique su codigo',spinner: 'bubbles',duration: 2000,
+          });
+      mensajeactualizando.present()
     var dataverificarcodigo = {
       nombre_solicitud:'verificarcodigo',
       codigos_validos_activar:this.codigos_validos_activar,
@@ -299,8 +309,57 @@ export class SchedulePage implements OnInit {
       this.json.variasfunciones(dataverificarcodigo).subscribe((res: any ) =>{
             console.log(' respuesta verificarcodigo ',res);
             this.respuestaverificarcodigo=res;
+
+            if(res){
+
+         
+
+            if(this.respuestaverificarcodigo.id_inutilizado>0){
+              mensajeactualizando.dismiss(); 
+
+                  var dataverificarusuario = {
+      nombre_solicitud:'verificarusuario',
+      codigos_validos_activar:this.codigos_validos_activar,
+      username: this.json.username
+    }
+      this.json.variasfunciones(dataverificarusuario).subscribe((res: any ) =>{
+            console.log(' respuesta verificarusuario ',res);
+            if(res=1){
+              exitosa.present();
+              this.reingresar();
+
+
+              var datadesactivarcodigo = {
+                nombre_solicitud:'desactivarcodigo',
+                codigos_validos_activar:this.codigos_validos_activar,
+              }
+                this.json.variasfunciones(datadesactivarcodigo).subscribe((res: any ) =>{
+                  console.log(' respuesta desactivarcodigo ',res);
+
+                });
+
+            }
+
+            });
+            }
+            else{
+              mensajeactualizando.dismiss();  
+              verifique.present(); 
+
+            }
+
+
+          }
+
+          else{
+            mensajeactualizando.dismiss();  
+            verifique.present(); 
+          }
+
             });
 
+
+            
   }
 
 

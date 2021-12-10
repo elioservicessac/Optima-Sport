@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 import { UserData } from '../../providers/user-data';
 
@@ -21,8 +22,10 @@ export class SignupPage {
   respuestaobtenercodigosoptimacodigosdeactivacion: any;
   tipo_cuenta: any;
   step: any;
+  respuestaagregarcodigo: any;
 
   constructor(
+    private loadingController: LoadingController,
         public json:JsonService,
     public router: Router,
     public userData: UserData
@@ -50,7 +53,13 @@ export class SignupPage {
     this.consultadecodigos();
     }
 
-   consultadecodigos(){
+   async consultadecodigos(){
+
+    const actualziando = await this.loadingController.create({
+      message: 'Actualizando...',spinner: 'bubbles',duration: 20000,
+      });
+      actualziando.present();
+
      this.tipo_cuenta=this.json.tipo_cuenta;
 
     var dataobtenercodigosoptimacodigosdeactivacion = {
@@ -59,6 +68,7 @@ export class SignupPage {
     }
       this.json.variasfunciones(dataobtenercodigosoptimacodigosdeactivacion).subscribe((res: any ) =>{
             console.log(' respuesta obtenercodigosoptimacodigosdeactivacion ',res);
+            actualziando.dismiss();
             this.respuestaobtenercodigosoptimacodigosdeactivacion=res;
       });
    }
@@ -76,6 +86,31 @@ export class SignupPage {
 
     this.codigos_validos_activar=event.target.value;
   } 
+
+  async agregarcodigo(){
+
+    const agregando = await this.loadingController.create({
+      message: 'agregando código, porfavor espere',spinner: 'bubbles',duration: 14000,
+      });
+    const agreado = await this.loadingController.create({
+      message: 'verifique su codigo',spinner: 'bubbles',duration: 1000,
+      });
+
+
+    var dataagregarcodigo = {
+      nombre_solicitud:'agregarcodigo',
+      codigos_validos_activar: this.codigos_validos_activar
+    }
+      this.json.variasfunciones(dataagregarcodigo).subscribe((res: any ) =>{
+            console.log(' respuesta verificarusuario ',res);
+            this.respuestaagregarcodigo=res;
+            if(res.id>0){
+              agregando.dismiss();
+              agreado.present();
+              this.consultadecodigos();
+            }
+       });
+  }
 
   
 

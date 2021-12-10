@@ -24,6 +24,7 @@ export class JsonService {
   public datacategoriaservicio: any;
   public isloggedin: any ='no';
   public tipo_cuenta: any;
+  username: any;
 
   constructor(
     private youtube: YoutubeVideoPlayer,

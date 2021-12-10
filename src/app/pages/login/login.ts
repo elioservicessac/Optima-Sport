@@ -75,6 +75,7 @@ export class LoginPage {
               console.log(' respuesta optimaconsultaruser ',res);
               if(res!='credencialesincorrectas'){
                 this.json.isloggedin='si';
+                this.json.username=res.username;
                 this.json.tipo_cuenta=res.tipo_cuenta;
                 exitoso.present();
                 mensajeactualizando.dismiss();
