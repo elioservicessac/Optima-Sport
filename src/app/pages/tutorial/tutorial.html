@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Saltar!</ion-button>
             <ion-button fill="clear" (click)="startApp()">
         Listo.
         <ion-icon slot="end" name="arrow-forward"></ion-icon>
@@ -12,37 +12,38 @@
 
 <ion-content fullscreen="true">
   <swiper (swiper)="setSwiperInstance($event)" (slideChangeTransitionStart)="onSlideChangeStart()">
-    <ng-template swiperSlide>
+    <ng-template (click)="onSlideChangeStart()" swiperSlide>
       <img src="assets/img/ica-slidebox-img-1.png" class="slide-image" />
-      <h2 class="slide-title">
-        Welcome to
-        <b>ICA</b>
+      <h2  style="z-index: 2; color:#0f8bfb" class="slide-title">
+        Bienvenido a
+        <b  style="z-index: 2; color:#bb5c08" >Optima Sport App</b>
       </h2>
-      <p>
+      <p style="z-index: 2; color:#0f8bfb; margin-right: -90px;">
         The
-        <b>Optima Sport App onference app</b> is a practical preview of the ionic framework in action, and a demonstration of proper code
-        use (Pruebas).
+        <b  style="z-index: 2; color:#ae5100" >Optima Sport App app</b> Es una aplicacion que te permite acceder al contenido explusivo de, Optima Sport.
+        bajo suscripciónes.
       </p>
     </ng-template>
 
     <ng-template swiperSlide>
       <img src="assets/img/ica-slidebox-img-2.png" class="slide-image" />
-      <h2 class="slide-title">What is Ionic?</h2>
-      <p>
-        <b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies
-        like HTML, CSS, and JavaScript.</p>
+      <h2 style="z-index: 2; color:#0f8bfb" class="slide-title">Como funciona?</h2>
+      <p style="z-index: 2; color:#bb5c08">
+        <b style="z-index: 2; color:#bb5c08"
+        >Registra una cuenta</b> Al, ingresar, la aplicación detecta automaticamente sus credenciales, de no estar registrado el sistema procedera a registrar su cuenta automaticamente.
+        Realice el pago par activar su suscripción.</p>
     </ng-template>
 
     <ng-template swiperSlide>
       <img src="assets/img/ica-slidebox-img-3.png" class="slide-image" />
-      <h2 class="slide-title">What is Ionic Appflow?</h2>
+      <h2 style="z-index: 2; color:#bb5c08"
+      class="slide-title">Como puedo acceder al contenido?</h2>
       <ion-button fill="clear" (click)="startApp()">
         Listo.
         <ion-icon slot="end" name="arrow-forward"></ion-icon>
       </ion-button>
-      <p>
-        <b>Ionic Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new
-        level of app development agility to mobile dev teams.</p>
+      <p style="z-index: 2; color:#bb5c08">
+        <b style="z-index: 2; color:#0f8bfb">Realiza el pago</b> Una vez verificado el pago, nuestro equipo procedera a facilitarte un codigo de activación el cual servira para que pueda verificar su cuenta.</p>
     </ng-template>
 
     <ng-template swiperSlide>

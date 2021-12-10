@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AlertController } from '@ionic/angular';
+import { JsonService } from './../../json.service';
 
 import { UserData } from '../../providers/user-data';
 
@@ -15,6 +16,7 @@ export class AccountPage implements AfterViewInit {
   username: string;
 
   constructor(
+    public json:JsonService,
     public alertCtrl: AlertController,
     public router: Router,
     public userData: UserData

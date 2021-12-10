@@ -10,14 +10,16 @@
 <ion-content>
   <div class="ion-padding-top ion-text-center">
     <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
-    <h2>Nombre Apellido</h2>
+    <h2 *ngIf="this.json.username">{{this.json.username}}</h2>
+     <ion-button *ngIf="!this.json.username" [disabled]="!this.json.username">   <h6>Usuario<br>Invalido</h6>  </ion-button>
+
 
     <ion-list inset>
-      <ion-item (click)="updatePicture()">Update Picture</ion-item>
-      <ion-item (click)="changeUsername()">Change Username</ion-item>
-      <ion-item (click)="changePassword()">Change Password</ion-item>
-      <ion-item (click)="support()">Support</ion-item>
-      <ion-item (click)="logout()">Logout</ion-item>
+      <!-- <ion-item (click)="updatePicture()">Update Picture</ion-item> -->
+      <ion-item (click)="changeUsername()">Cambiar usuario</ion-item>
+      <ion-item (click)="changePassword()">Cambiar contraseña</ion-item>
+      <ion-item (click)="support()">Soporte</ion-item>
+      <ion-item (click)="logout()">Salir</ion-item>
     </ion-list>
   </div>
 </ion-content>
