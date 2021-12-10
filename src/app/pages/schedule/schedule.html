@@ -1,0 +1,101 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+<h3 color="primary" style="color:#f07404; text-align:center;">{{this.nombrecategoriaenvista}}</h3>
+
+<ion-grid *ngIf="videosendata&&this.isloggedin=='si'&&this.puedevervideos=='si'">
+  <button style="background-color: transparent;" *ngFor="let video of videosendata" (click)="openVideo(video)" >
+
+      <ion-row>
+          <ion-col size="4">
+            <!-- <ion-thumbnail item-start> -->
+              <img width="100%" height="100%" style="border-radius: 10px;"  [src]="video.snippet.thumbnails.standard.url">
+            <!-- </ion-thumbnail> -->
+          </ion-col>
+          <ion-col size="8">
+                <h2 style="color:#f07404; font-family: 'Times New Roman', Times, serif;" color="primary">{{video.snippet.title}}</h2>
+                <!-- <p>{{ video.snippet.description }}</p> -->
+           </ion-col>
+      </ion-row>
+  </button>
+  <ion-fab style="background-color: transparent;" slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button>
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-grid>
+
+
+<ion-grid *ngIf="!videosendata&&this.isloggedin=='si'&&this.puedevervideos=='si'">
+  <ion-text><--Seleccione una categoria</ion-text>
+
+</ion-grid>
+
+
+
+<ion-grid *ngIf="this.puedevervideos=='no'&&this.isloggedin=='si'">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text  (click)="sinfuncion()" color="danger" >No tiene permisos para ver videos.</ion-text>
+      <ion-text  (click)="sinfuncion()" color="danger" >A continuación ingrese su codigo de activación.</ion-text>
+      <ion-card>
+          <ion-item size="small">
+            <ion-label position="floating">Codigo de activación</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+<ion-row class="ion-align-items-center">
+  <ion-col size="12" class="ion-text-center">
+    <ion-button  (click)="sinfuncion()" color="success" ><ion-text style="font-weight: 500;">Verificar Cuenta</ion-text>
+    </ion-button> <br>
+    <ion-text  (click)="sinfuncion()" color="primary" >Si no dispone del codigo de activación puede adquirirlo mediante el siguiente enlace:</ion-text><br>
+    <ion-button  (click)="sinfuncion()" color="primary" ><ion-text style="font-weight: 500;">Adquirir Código</ion-text>
+    </ion-button>
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+
+<ion-grid *ngIf="this.isloggedin=='no'">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text  (click)="reingresar()" color="danger" >Sección expirada debe reingresar.</ion-text>
+    </ion-col>
+  </ion-row>
+<ion-row class="ion-align-items-center">
+  <ion-col size="12" class="ion-text-center">
+    <ion-button  (click)="reingresar()" color="danger" ><ion-text style="font-weight: 500;">REINGRESAR</ion-text>
+    </ion-button>
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+
+
+
+
+
+
+</ion-content>

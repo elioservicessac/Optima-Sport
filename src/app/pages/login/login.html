@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="end">
+      <ion-button slot="end">
+        <ion-icon color="primary" name="help"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- <ion-title>Login</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="tertiary">
+  <div class="login-logo">
+    <img src="assets/img/appicon.svg" alt="Ionic logo">
+  </div>
+
+
+<ion-grid style="width: 80%; align-items: center; align-self: center; align-content: center;">
+
+
+  <form style="border-radius: 8px;" #loginForm="ngForm" novalidate>
+
+    <ion-list style="border-radius: 8px;">
+    <ion-card>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Usuario:</ion-label>
+        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="username.valid || submitted === false" class="ion-padding-start">
+          El usuario es requerido!
+        </p>
+      </ion-text>
+    </ion-card>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Contraseña:</ion-label>
+        <ion-input (keyup.enter)="ENTERcontrasena(loginForm)" (ionChange)="CHANGEcontrasena($event)" [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="password.valid || submitted === false" class="ion-padding-start">
+          La contraseña es requerida!
+        </p>
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="!username.valid||this.estacontrasena==''" (click)="onLogin(loginForm)" type="submit" expand="block"><strong>Iniciar</strong></ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [disabled]="!username.valid||this.estacontrasena==''" (click)="registrarse(loginForm)" type="submit" expand="block"><strong>Registrarse!</strong></ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+</ion-grid>
+
+
+
+</ion-content>
