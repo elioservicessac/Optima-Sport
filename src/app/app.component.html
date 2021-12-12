@@ -34,14 +34,14 @@
           </ion-menu-toggle> -->
 
 
-          <ion-menu-toggle class="ion-align-items-center" (click)="enviarcategoria(list)" autoHide="false" *ngFor="let list of listasderepro; let i = index">
+          <ion-menu-toggle class="ion-align-items-center" (click)="enviarcategoria(list)" autoHide="false" *ngFor="let list of listasderepro2; let i = index">
             <ion-grid class="ion-align-items-center">
               <ion-row class="ion-align-items-center" >
                 <ion-col class="ion-align-items-center">
                   <ion-item class="ion-align-items-center" style="cursor: pointer;" routerDirection="root" detail="false">
                     <!-- <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon> -->
                     <ion-thumbnail class="ion-align-items-center" item-start>
-                      <img style="border-radius:6px; width:32px; height:32px" [src]="list.snippet.thumbnails.standard.url">
+                      <img *ngIf="list.snippet.thumbnails.default.url!=null&&list.snippet.thumbnails.default.url!=undefined" style="border-radius:6px; width:32px; height:32px" [src]="list.snippet.thumbnails.default.url">
                     </ion-thumbnail>
                     <ion-label class="ion-align-items-center" style=" margin-bottom:32px;" color="primary">
                       {{list.snippet.title}}
@@ -114,6 +114,14 @@
             <ion-item button (click)="openTutorial()" detail="false">
               <ion-icon slot="start" name="hammer"></ion-icon>
               <ion-label>Ver Tutorial</ion-label>
+            </ion-item>
+            <ion-item button (click)="api()" detail="false">
+              <ion-icon slot="start" name="hammer"></ion-icon>
+              <ion-label>Api</ion-label>
+            </ion-item>
+            <ion-item button (click)="api()" detail="false">
+              <ion-icon slot="start" name="hammer"></ion-icon>
+              <ion-label>lista</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

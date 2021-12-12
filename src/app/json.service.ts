@@ -19,12 +19,16 @@ export class JsonService {
 
   apiKey = 'AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y';
   channelId = 'UCWHrwVR0pX247lyy14xY7cA';
+  beareractivo:string;
 
   public nombrecategoriaservicio: any;
   public datacategoriaservicio: any;
   public isloggedin: any ='no';
   public tipo_cuenta: any;
   username: any;
+  client_id: string;
+  client_secret: string;
+  refresh_token: string;
 
   constructor(
     private youtube: YoutubeVideoPlayer,
@@ -45,41 +49,49 @@ export class JsonService {
   {headers:new HttpHeaders({"Content-Type":'application/json'})});
   }
 
-
-
   async dismisscargandofuncion(){
 
   }
 
-  getPlaylistsForChannel(channel) {
-    return this.http.get('https://www.googleapis.com/youtube/v3/playlists?key=' + this.apiKey + '&channelId=' + channel + '&part=snippet,id&maxResults=30')
+  getPlaylistsForChannel() {
+    return this.http.get('https://www.googleapis.com/youtube/v3/playlists?key=' + this.apiKey + '&channelId=' + this.channelId + '&part=snippet,id&maxResults=50')
     
   }
  
-  // getListVideos(listId) {
-  //   return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + this.apiKey + '&playlistId=' + listId +'&part=snippet,id&maxResults=40')
-    
-  // }
-
-
-  // getListVideos(listId) {
-  //   return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y&playlistId=PLis_1RBMtTVWp55Ug0Plwszyar0rmyEp6')
-    
-  // }
-
-
   getListVideos(listId) {
-    return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + this.apiKey + '&part=snippet&playlistId=' + listId + '&maxResults=20')
+    return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + this.apiKey + '&part=snippet&playlistId=' + listId + '&maxResults=50')
     
   }
-
-
-  // https://www.googleapis.com/youtube/v3/search?channelId=UCWHrwVR0pX247lyy14xY7cA
 
   barrabusqueda() {
-    return this.http.get('https://www.googleapis.com/youtube/v3/search?channelId='+this.channelId+'&key=AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y&part=snippet&maxResults=20')
+    return this.http.get('https://www.googleapis.com/youtube/v3/search?channelId='+this.channelId+'&key='+this.apiKey+'&part=snippet&maxResults=50')
   
   }
+
+  obtenertoken(){
+
+    var data = {
+
+    }
+
+    this.client_id='491180233867-ptm7aki12m6rps6b4hittpb8c5fpq406.apps.googleusercontent.com';
+    this.client_secret='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';
+    this.refresh_token='1//04NQ_qhuwW9_aCgYIARAAGAQSNwF-L9Irmf6CQD4t1mwMQJ7uxrriKp6mxlEz4eJmjDjSvSQpCvx8SZ9fRpts3ZQR6-br1YAvupE';
+
+    var url = 'https://oauth2.googleapis.com/token?client_id='+this.client_id+'&client_secret='+this.client_secret+'&refresh_token='+this.refresh_token+'&grant_type=refresh_token';
+    return this.http.post(url,data,
+    {headers:new HttpHeaders({"Content-Type":'application/json'})});
+  }
+
+
+    obtenercanalesportokenbearerparavideosprivados()
+  {
+  var url = 'https://www.googleapis.com/youtube/v3/playlists?key='+this.apiKey+'&status=status&part=snippet,status&maxResults=50&mine=true';
+  return this.http.get(url,
+  {headers:new HttpHeaders({"Authorization":'Bearer '+this.beareractivo})});
+  }
+
+
 
 
 }

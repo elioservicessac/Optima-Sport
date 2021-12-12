@@ -54,6 +54,8 @@ export class SchedulePage implements OnInit {
   resultadostodos:  Array<any> = [];
   codigos_validos_activar: any;
   respuestaverificarcodigo: any;
+  tokenconsulta: any;
+  listaconsulta: any;
 
   constructor(
     private loadingController: LoadingController,
@@ -78,6 +80,31 @@ export class SchedulePage implements OnInit {
     this.consultacategoria();
 
 
+  }
+
+  obtenertokenaliniciar()
+  {
+    console.log('activo bearer:this.json.beareractivo')
+    if(this.json.beareractivo==null||this.json.beareractivo==undefined){
+  
+      this.tokenconsulta = this.json.obtenertoken();
+      this.tokenconsulta.subscribe(datadeltokenresponse => {
+        console.log('tokenconsulta full api respuesta: ', datadeltokenresponse);
+        this.json.beareractivo=datadeltokenresponse.access_token;
+        this.listasdecanalprivadasypublicas();
+        });
+  
+    }
+  }
+
+  listasdecanalprivadasypublicas(){
+
+    this.listaconsulta = this.json.obtenercanalesportokenbearerparavideosprivados();
+  this.listaconsulta.subscribe(datalista => {
+  console.log('listaconsulta full api respuesta por token!: ', datalista);
+  console.log('la consulta fue con el berier:',this.json.beareractivo);
+  });
+  
   }
 
 
@@ -370,8 +397,8 @@ export class SchedulePage implements OnInit {
     // this.resultadostodos=null;
     this.resultadostodos.length = 0;
 
-    this.channelId="UCWHrwVR0pX247lyy14xY7cA";
-    this.playlists = this.json.getPlaylistsForChannel(this.channelId);
+    this.channelId="UCsLb1egga3Aeh_kfMUUietg";
+    this.playlists = this.json.getPlaylistsForChannel();
     this.playlists.subscribe(data => {
       console.log('playlists full api respuesta: ', data);
       this.listasderepro=data.items;

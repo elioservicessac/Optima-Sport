@@ -15,6 +15,7 @@ import { JsonService } from './json.service';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 // import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,8 +23,9 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  channelId = 'UCWHrwVR0pX247lyy14xY7cA'; // Devdactic Channel ID
+  channelId = this.json.channelId; // Devdactic Channel ID
   playlists: any;
+  
 
   appPages = [
     {
@@ -50,7 +52,11 @@ export class AppComponent implements OnInit {
   loggedIn = false;
   dark = true;
   listasderepro: any;
+  listasderepro2: any;
   enviarporparams:any;
+  response: void;
+  tokenconsulta: any;
+  listaconsulta: any;
  
   constructor(
     public alertCtrl: AlertController,
@@ -69,11 +75,14 @@ export class AppComponent implements OnInit {
   ) 
   
   {
+
+    this.obtenertokenaliniciar();
+    
     this.initializeApp();
 
 
-    this.channelId="UCWHrwVR0pX247lyy14xY7cA";
-    this.playlists = this.json.getPlaylistsForChannel(this.channelId);
+    this.channelId=this.json.channelId;
+    this.playlists = this.json.getPlaylistsForChannel();
     this.playlists.subscribe(data => {
       console.log('playlists full api respuesta: ', data);
       this.listasderepro=data.items;
@@ -83,6 +92,21 @@ export class AppComponent implements OnInit {
     });
     
   }
+  
+  obtenertokenaliniciar()
+{
+  console.log('activo bearer:this.json.beareractivo')
+  if(this.json.beareractivo==null||this.json.beareractivo==undefined){
+
+    this.tokenconsulta = this.json.obtenertoken();
+    this.tokenconsulta.subscribe(datadeltokenresponse => {
+      console.log('tokenconsulta full api respuesta: ', datadeltokenresponse);
+      this.json.beareractivo=datadeltokenresponse.access_token;
+      this.listasdecanalprivadasypublicas();
+      });
+
+  }
+}
 
   iralpaneladmin(){
     // this.router.navigate(['/signup']);
@@ -93,7 +117,7 @@ export class AppComponent implements OnInit {
 
 
   searchPlaylists() {
-    this.playlists = this.json.getPlaylistsForChannel(this.channelId);
+    this.playlists = this.json.getPlaylistsForChannel();
     this.playlists.subscribe(data => {
       console.log('playlists: ', data);
 
@@ -201,4 +225,23 @@ export class AppComponent implements OnInit {
     this.storage.set('ion_did_tutorial', false);
     this.router.navigateByUrl('/tutorial');
   }
+
+
+  api(){
+
+
+
+}
+
+listasdecanalprivadasypublicas(){
+
+  this.listaconsulta = this.json.obtenercanalesportokenbearerparavideosprivados();
+this.listaconsulta.subscribe(datalista => {
+console.log('listaconsulta full api respuesta por token!: ', datalista);
+console.log('la consulta fue con el berier:',this.json.beareractivo);
+this.listasderepro2=datalista.items;
+});
+
+}
+
 }
