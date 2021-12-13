@@ -13,7 +13,7 @@
       <ion-row  class="ion-no-padding ion-align-content-center vertical-center ion-align-items-center">
         <ion-col size="10.6">
           <!-- <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="filterTerm" (ionChange)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar> -->
-          <ion-searchbar  *ngIf="showSearchbar" showCancelButton="always" (ionClear)="closeycancelboton()" showCloseButton="false" (ionCancel)="closeycancelboton()" placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+          <ion-searchbar  (keyup.enter)="paso2()"  *ngIf="showSearchbar" showCancelButton="always" (ionClear)="closeycancelboton()" showCloseButton="false" (ionCancel)="closeycancelboton()" placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
  
         </ion-col>
         <ion-col class="ion-no-padding ion-align-content-center vertical-center ion-align-items-center" no-padding size="1.4">
