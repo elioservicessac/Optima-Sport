@@ -3,11 +3,18 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
     <ion-title>Inicio especial</ion-title>
+        <ion-buttons  slot="end">
+            <ion-button color="primary" (click)="step2()" *ngIf="this.step=='1'&&this.json.tipo_cuenta==999">Activar Usuarios</ion-button>
+            <ion-button color="primary" (click)="step1()" *ngIf="this.step=='2'&&this.json.tipo_cuenta==999">Volver</ion-button>
+         </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <section *ngIf="this.step=='1'" >
 
   <div class="signup-logo">
     <img src="assets/img/appicon.svg" alt="Ionic Logo">
@@ -71,5 +78,50 @@
       </ion-col>
       </ion-row>
   </ion-grid>
+
+</section>
+
+
+<section  *ngIf="this.step=='2'">
+
+  <ion-text>Lista de usuarios activados / desactivados:</ion-text>
+
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="5" class="ion-text-center">
+      <ion-text color="primary" >Usuario<br>desactivado</ion-text>
+  
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-text color="primary" >fecha<br>creacion</ion-text>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center">
+      <ion-text color="primary" >acccion de<br>activar/des</ion-text>
+    </ion-col>
+    </ion-row>
+
+<section *ngFor="let cadausuario of this.respuestatodoslosusuarios">
+
+
+
+
+  <ion-row class="ion-align-items-center">
+  <ion-col size="5" class="ion-text-center">
+    <ion-text color="primary" >{{cadausuario.username}}</ion-text>
+
+  </ion-col>
+  <ion-col size="4" class="ion-text-center">
+    <ion-text color="primary" >{{cadausuario.create_date}}</ion-text>
+  </ion-col>
+  <ion-col size="3" class="ion-text-center">
+    <ion-button *ngIf="cadausuario.tipo_cuenta=='0'" color="primary" (click)="activarusuario(cadausuario)">Activar</ion-button>
+    <ion-button *ngIf="cadausuario.tipo_cuenta=='1'"  color="danger" (click)="desactivarusuario(cadausuario)">Desactivar</ion-button>
+
+  </ion-col>
+  </ion-row>
+
+</section>
+
+</section>
 
 </ion-content>

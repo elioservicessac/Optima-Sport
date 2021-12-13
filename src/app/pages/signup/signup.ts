@@ -23,6 +23,8 @@ export class SignupPage {
   tipo_cuenta: any;
   step: any;
   respuestaagregarcodigo: any;
+  respuestatodoslosusuarios: any;
+  username: any;
 
   constructor(
     private loadingController: LoadingController,
@@ -32,24 +34,30 @@ export class SignupPage {
   )
    {
 
+      this.step='1';
       this.consultadecodigos();
    }
 
     ngOnInit() {
+      this.step='1';
     this.consultadecodigos();
     }
 
     ionViewWillEnter(){
+      this.step='1';
     this.consultadecodigos();
     }
 
     ionViewDidEnter(){
+      this.step='1';
     this.consultadecodigos();
     }
     ionViewWillLeave(){
+      this.step='1';
     this.consultadecodigos();
     }
     ionViewDidLeave(){
+      this.step='1';
     this.consultadecodigos();
     }
 
@@ -112,7 +120,85 @@ export class SignupPage {
        });
   }
 
-  
 
   
+  async step2(){
+
+    this.step='2';
+    const actualizando = await this.loadingController.create({
+      message: 'actualizando',spinner: 'bubbles',duration: 14000,
+      });
+      actualizando.present();
+
+      var datatodoslosusuarios = {
+        nombre_solicitud:'todoslosusuarios',
+        tipo_cuenta:this.tipo_cuenta
+      }
+        this.json.variasfunciones(datatodoslosusuarios).subscribe((res: any ) =>{
+              console.log(' respuesta todoslosusuarios ',res);
+              this.respuestatodoslosusuarios=res;
+              actualizando.dismiss();
+
+              
+            });  
+
+  }
+
+  
+  async step1(){
+    this.step='1';
+
+  }
+
+  
+  async activarusuario(cadausuario){
+    
+    const actualizando = await this.loadingController.create({
+      message: 'activando',spinner: 'bubbles',duration: 14000,
+      });
+      actualizando.present();
+
+      var dataactivarusuariopanel = {
+        nombre_solicitud:'activarusuariopanel',
+        username: cadausuario.username
+      }
+        this.json.variasfunciones(dataactivarusuariopanel).subscribe((res: any ) =>{
+              console.log(' respuesta activarusuariopanel ',res);
+              actualizando.dismiss();
+
+              
+              //desactivado/activado actualizamos lista...
+              this.step2()
+
+            });  
+
+    
+
+
+  }
+
+  
+  async desactivarusuario(cadausuario){
+    
+    const actualizando = await this.loadingController.create({
+      message: 'desactivando',spinner: 'bubbles',duration: 14000,
+      });
+      actualizando.present();
+
+      var datadesactivarusuariopanel = {
+        nombre_solicitud:'desactivarusuariopanel',
+        username: cadausuario.username
+      }
+        this.json.variasfunciones(datadesactivarusuariopanel).subscribe((res: any ) =>{
+              console.log(' respuesta desactivarusuariopanel ',res);
+              actualizando.dismiss();
+
+              //desactivado/activado actualizamos lista...
+              this.step2();
+
+              
+            });  
+
+    
+  }
 }
