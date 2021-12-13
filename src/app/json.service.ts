@@ -17,8 +17,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 })
 export class JsonService {
 
-  apiKey = 'AIzaSyDNqNstN55PH7hSL7ythSOxNZfTKvWJb7Y';
-  channelId = 'UCWHrwVR0pX247lyy14xY7cA';
+  apiKey = 'AIzaSyD8Xv0zaHOV5EmKyM7-em1HYfeG6W4vbwU';
+  channelId = 'UCsLb1egga3Aeh_kfMUUietg';
   beareractivo:string;
 
   public nombrecategoriaservicio: any;
@@ -74,9 +74,9 @@ export class JsonService {
 
     }
 
-    this.client_id='491180233867-ptm7aki12m6rps6b4hittpb8c5fpq406.apps.googleusercontent.com';
-    this.client_secret='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';
-    this.refresh_token='1//04NQ_qhuwW9_aCgYIARAAGAQSNwF-L9Irmf6CQD4t1mwMQJ7uxrriKp6mxlEz4eJmjDjSvSQpCvx8SZ9fRpts3ZQR6-br1YAvupE';
+    this.client_id='719000348282-a3u6ci2mu17bd8amd64dp69mn9729pao.apps.googleusercontent.com';
+    this.client_secret='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';
+    this.refresh_token='1//04abDeSy4-l8MCgYIARAAGAQSNwF-L9IroPBGOBQP54jlUPplpW0iQW3bm_mc4PuIDrQTtHxDtNR92WzhXZX6hyHeKyueIJ_bm2Y';
 
     var url = 'https://oauth2.googleapis.com/token?client_id='+this.client_id+'&client_secret='+this.client_secret+'&refresh_token='+this.refresh_token+'&grant_type=refresh_token';
     return this.http.post(url,data,
