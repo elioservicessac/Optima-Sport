@@ -58,6 +58,9 @@ export class AppComponent implements OnInit {
   tokenconsulta: any;
   listaconsulta: any;
  
+  playlistsmanual:  Array<any> = [];
+
+
   constructor(
     public alertCtrl: AlertController,
     private youtube: YoutubeVideoPlayer,
@@ -76,7 +79,16 @@ export class AppComponent implements OnInit {
   
   {
 
-    this.obtenertokenaliniciar();
+
+
+
+
+console.log('playlistsmanual',this.playlistsmanual);
+
+
+    this.creararraymanualyenviaravista();
+
+    // this.obtenertokenaliniciar();
     
     this.initializeApp();
 
@@ -93,20 +105,20 @@ export class AppComponent implements OnInit {
     
   }
   
-  obtenertokenaliniciar()
-{
-  console.log('activo bearer:this.json.beareractivo')
-  if(this.json.beareractivo==null||this.json.beareractivo==undefined){
+//   obtenertokenaliniciar()
+// {
+//   console.log('activo bearer:this.json.beareractivo')
+//   if(this.json.beareractivo==null||this.json.beareractivo==undefined){
 
-    this.tokenconsulta = this.json.obtenertoken();
-    this.tokenconsulta.subscribe(datadeltokenresponse => {
-      console.log('tokenconsulta full api respuesta: ', datadeltokenresponse);
-      this.json.beareractivo=datadeltokenresponse.access_token;
-      this.listasdecanalprivadasypublicas();
-      });
+//     this.tokenconsulta = this.json.obtenertoken();
+//     this.tokenconsulta.subscribe(datadeltokenresponse => {
+//       console.log('tokenconsulta full api respuesta: ', datadeltokenresponse);
+//       this.json.beareractivo=datadeltokenresponse.access_token;
+//       this.listasdecanalprivadasypublicas();
+//       });
 
-  }
-}
+//   }
+// }
 
   iralpaneladmin(){
     // this.router.navigate(['/signup']);
@@ -233,15 +245,110 @@ export class AppComponent implements OnInit {
 
 }
 
-listasdecanalprivadasypublicas(){
+// listasdecanalprivadasypublicas(){
 
-  this.listaconsulta = this.json.obtenercanalesportokenbearerparavideosprivados();
-this.listaconsulta.subscribe(datalista => {
-console.log('listaconsulta full api respuesta por token!: ', datalista);
-console.log('la consulta fue con el berier:',this.json.beareractivo);
-this.listasderepro2=datalista.items;
-});
+//   this.listaconsulta = this.json.obtenercanalesportokenbearerparavideosprivados();
+// this.listaconsulta.subscribe(datalista => {
+// console.log('listaconsulta full items api respuesta por token!: ', datalista.items);
+// console.log('la consulta fue con el berier:',this.json.beareractivo);
+// this.listasderepro2=datalista.items;
+
+// });
+
+// }
+
+creararraymanualyenviaravista(){
+//se creara un array manual para mostrarlo en el menu:
+// this.playlistsmanual[0].id='PLwt81QUNa7aZaOhJ01796S40pjltqldG3'
+this.playlistsmanual[0]={
+  id:"PLwt81QUNa7aZaOhJ01796S40pjltqldG3",
+  snippet: 
+  {
+    title:'PLATAFORMA FUERZA',
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/leoC3BTHCeo/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[1]={
+  id:"PLwt81QUNa7abf8vEAAHEzID3FHtqLi6HK",
+  snippet: 
+  {
+    title:"PLATAFORMA ABDOMINALES",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/_RrqgII0a_o/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[2]={
+  id:"PLwt81QUNa7aZqfNY8Xc4W80mlEYL7e3eQ",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC POSTURA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/CuvcW6NZwZc/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[2]={
+  id:"PLwt81QUNa7aYOtpMxogQfiaFYOw3aP1x_",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC PISADA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/cK1lZ0nRYkc/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[3]={
+  id:"PLwt81QUNa7abyMzhTM1Omn16tBhQsNesC",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC PLIOMETRÍA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/qAVrXSPCzyY/default.jpg"}
+    }
+  }
+}
+
+
+this.playlistsmanual[4]={
+  id:"PLwt81QUNa7aby2Q3_x986ocgWwM3eweWZ",
+  snippet: 
+  {
+    title:"PLATAFORMA FOAMROLLER",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/5usGm_hmDIA/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[5]={
+  id:"PLwt81QUNa7aalizTLlptDbU7HDdPNKdIZ",
+  snippet: 
+  {
+    title:"PLATAFORMA ESTIRAMIENTOS",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/9XHqGzC8R3o/default.jpg"}
+    }
+  }
+}
+
+this.listasderepro2=this.playlistsmanual;
 
 }
+
+
 
 }

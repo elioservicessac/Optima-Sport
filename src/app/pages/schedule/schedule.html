@@ -154,7 +154,7 @@
 
 
 
-    <button style="background-color: transparent;" *ngFor="let video of resultadostodos | filter:filterTerm" (click)="openVideo(video)" >
+    <button style="background-color: transparent;width:100%;" *ngFor="let video of resultadostodos | filter:filterTerm" (click)="openVideo(video)" >
   
         <ion-row>
             <ion-col size="4">
@@ -167,6 +167,7 @@
                   <!-- <p>{{ video.snippet.description }}</p> -->
              </ion-col>
         </ion-row>
+        <br>
     </button>
     <ion-fab style="background-color: transparent;" slot="fixed" vertical="bottom" horizontal="end" #fab>
       <ion-fab-button>

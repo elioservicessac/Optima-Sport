@@ -56,6 +56,8 @@ export class SchedulePage implements OnInit {
   respuestaverificarcodigo: any;
   tokenconsulta: any;
   listaconsulta: any;
+  playlistsmanual:  Array<any> = [];
+  listasderepro2: any;
 
   constructor(
     private loadingController: LoadingController,
@@ -391,6 +393,100 @@ export class SchedulePage implements OnInit {
 
 
   paso2(){
+
+//se creara un array manual para mostrarlo en el menu:
+// this.playlistsmanual[0].id='PLwt81QUNa7aZaOhJ01796S40pjltqldG3'
+this.playlistsmanual[0]={
+  id:"PLwt81QUNa7aZaOhJ01796S40pjltqldG3",
+  snippet: 
+  {
+    title:'PLATAFORMA FUERZA',
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/leoC3BTHCeo/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[1]={
+  id:"PLwt81QUNa7abf8vEAAHEzID3FHtqLi6HK",
+  snippet: 
+  {
+    title:"PLATAFORMA ABDOMINALES",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/_RrqgII0a_o/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[2]={
+  id:"PLwt81QUNa7aZqfNY8Xc4W80mlEYL7e3eQ",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC POSTURA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/CuvcW6NZwZc/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[2]={
+  id:"PLwt81QUNa7aYOtpMxogQfiaFYOw3aP1x_",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC PISADA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/cK1lZ0nRYkc/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[3]={
+  id:"PLwt81QUNa7abyMzhTM1Omn16tBhQsNesC",
+  snippet: 
+  {
+    title:"PLATAFORMA TEC PLIOMETRÍA",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/qAVrXSPCzyY/default.jpg"}
+    }
+  }
+}
+
+
+this.playlistsmanual[4]={
+  id:"PLwt81QUNa7aby2Q3_x986ocgWwM3eweWZ",
+  snippet: 
+  {
+    title:"PLATAFORMA FOAMROLLER",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/5usGm_hmDIA/default.jpg"}
+    }
+  }
+}
+
+this.playlistsmanual[5]={
+  id:"PLwt81QUNa7aalizTLlptDbU7HDdPNKdIZ",
+  snippet: 
+  {
+    title:"PLATAFORMA ESTIRAMIENTOS",
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/9XHqGzC8R3o/default.jpg"}
+    }
+  }
+}
+
+this.listasderepro2=this.playlistsmanual;
+
+
+
+
+
     this.step='2';
     console.log('seprocedera al paso 2');
     // this.json.barrabusqueda();
@@ -403,8 +499,9 @@ export class SchedulePage implements OnInit {
       console.log('playlists full api respuesta: ', data);
       this.listasderepro=data.items;
       console.log('solo listas de reproduccion: ', data.items);
+      console.log('solo listas de reproduccion tras busqueda y arreglo manual: ', this.playlistsmanual);
 
-      this.videosendata_barra=data.items;
+      this.videosendata_barra=this.playlistsmanual;
       console.log('videosendata_barra: ', this.videosendata_barra);
       for (var i=0; i<this.videosendata_barra.length; i++) { 
   
