@@ -378,56 +378,44 @@ creararraymanualyenviaravista(){
 
 //plataformas runner
 
-      this.playlistsmanual[10]={
-        id:"PLwt81QUNa7abjWbbOq8nLQ9QTbPxlx89i",
-        snippet: 
-        {
-          title:'LA RESISTENCIA RUNNER # 1',
-          thumbnails:
-          {
-          default:{url:"https://i.ytimg.com/vi/9bOhqTP0TbM/default.jpg"}
-          }
-        }
-      }
-      this.playlistsmanual[11]={
-        id:"PLwt81QUNa7aaoSDsgdXr1Cv8IwV87uZZe",
-        snippet: 
-        {
-          title:'LA RESISTENCIA RUNNER # 2',
-          thumbnails:
-          {
-          default:{url:"https://i.ytimg.com/vi/r91jW1skBBg/default.jpg"}
-          }
-        }
-      }
-      this.playlistsmanual[12]={
-        id:"PLwt81QUNa7aZWO2os2v9Wcvb-eSTFEQ3z",
-        snippet: 
-        {
-          title:'LA RESISTENCIA RUNNER # 3',
-          thumbnails:
-          {
-          default:{url:"https://i.ytimg.com/vi/Soec2ZCwdh0/default.jpg"}
-          }
-        }
+this.playlistsmanual[10]={
+  id:"PLwt81QUNa7aZwa0zaPo-nl091octaBBPs",
+  snippet: 
+  {
+    title:'PLATAFORMA ABDOMINAL # 1',
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/_RrqgII0a_o/hqdefault.jpg"}
+    }
+  }
 }
+this.playlistsmanual[11]={
+  id:"PLwt81QUNa7aYzewLV76UYmHAtb5t_g9Qj",
+  snippet: 
+  {
+    title:'PLATAFORMA ABDOMINAL # 2',
+    thumbnails:
+    {
+    default:{url:"https://i.ytimg.com/vi/mi4ZKhTH-3k/hqdefault.jpg"}
+    }
+  }
+}
+//   this.playlistsmanual[12]={
+//     id:"PLwt81QUNa7aZWO2os2v9Wcvb-eSTFEQ3z",
+//     snippet: 
+//     {
+//       title:'LA RESISTENCIA RUNNER # 3',
+//       thumbnails:
+//       {
+//       default:{url:"https://i.ytimg.com/vi/Soec2ZCwdh0/default.jpg"}
+//       }
+//     }
+// }
 
 //plataformas runner
 
 
-this.playlistsmanual[13]={
-  id:"PLwt81QUNa7abf8vEAAHEzID3FHtqLi6HK",
-  snippet: 
-  {
-    title:"PLATAFORMA ABDOMINALES",
-    thumbnails:
-    {
-    default:{url:"https://i.ytimg.com/vi/_RrqgII0a_o/default.jpg"}
-    }
-  }
-}
-
-this.playlistsmanual[14]={
+this.playlistsmanual[12]={
   id:"PLwt81QUNa7aZqfNY8Xc4W80mlEYL7e3eQ",
   snippet: 
   {
@@ -439,7 +427,7 @@ this.playlistsmanual[14]={
   }
 }
 
-this.playlistsmanual[15]={
+this.playlistsmanual[13]={
   id:"PLwt81QUNa7aYOtpMxogQfiaFYOw3aP1x_",
   snippet: 
   {
@@ -451,7 +439,7 @@ this.playlistsmanual[15]={
   }
 }
 
-this.playlistsmanual[16]={
+this.playlistsmanual[14]={
   id:"PLwt81QUNa7abyMzhTM1Omn16tBhQsNesC",
   snippet: 
   {
@@ -464,7 +452,7 @@ this.playlistsmanual[16]={
 }
 
 
-this.playlistsmanual[17]={
+this.playlistsmanual[15]={
   id:"PLwt81QUNa7aby2Q3_x986ocgWwM3eweWZ",
   snippet: 
   {
@@ -476,7 +464,7 @@ this.playlistsmanual[17]={
   }
 }
 
-this.playlistsmanual[18]={
+this.playlistsmanual[16]={
   id:"PLwt81QUNa7aalizTLlptDbU7HDdPNKdIZ",
   snippet: 
   {
