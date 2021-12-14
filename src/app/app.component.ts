@@ -260,19 +260,162 @@ console.log('playlistsmanual',this.playlistsmanual);
 creararraymanualyenviaravista(){
 //se creara un array manual para mostrarlo en el menu:
 // this.playlistsmanual[0].id='PLwt81QUNa7aZaOhJ01796S40pjltqldG3'
-this.playlistsmanual[0]={
-  id:"PLwt81QUNa7aZaOhJ01796S40pjltqldG3",
-  snippet: 
-  {
-    title:'PLATAFORMA FUERZA',
-    thumbnails:
-    {
-    default:{url:"https://i.ytimg.com/vi/leoC3BTHCeo/default.jpg"}
+
+
+//plataformas fuerza
+    this.playlistsmanual[0]={
+      id:"PLwt81QUNa7aZGUYCWM9yGWsXGnAfm5yXt",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #1',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/9WLgVvUDE9o/default.jpg"}
+        }
+      }
     }
-  }
+    this.playlistsmanual[1]={
+      id:"PLwt81QUNa7aZ_lX85HHGLkz-ONsoKIVaT",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #2',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/lpXHFxfLLcc/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[2]={
+      id:"PLwt81QUNa7aZehM_1rC2HofkxyADLl9R4",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #3',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/v3mgzTJdttg/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[3]={
+      id:"PLwt81QUNa7aZVgVY4mh3luivSraNHaqKo",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #4',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/vv0yndHwXT0/default.jpg"}
+        }
+      }
+    }
+        this.playlistsmanual[4]={
+      id:"PLwt81QUNa7aaObAdO-RC9CIMMwHTrlMRn",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #5',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/wdWZpWI13T8/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[5]={
+      id:"PLwt81QUNa7abrgyl_ra0Wh19y3ScSDQq4",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #6',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/leoC3BTHCeo/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[6]={
+      id:"PLwt81QUNa7aaVuZCN25KeMqI8jk6qWLIw",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #7',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/VbtPBA41nYI/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[7]={
+      id:"PLwt81QUNa7aaGiZewDQJwDepOZd2Nn99a",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #8',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/TD5ZJACvvJs/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[8]={
+      id:"PLwt81QUNa7aYL20Vv1CgdM893rhFAYFel",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #9',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/2eiAWtEgv6Y/default.jpg"}
+        }
+      }
+    }
+    this.playlistsmanual[9]={
+      id:"PLwt81QUNa7aYv3vN1Sqaevk1dXjL2qiej",
+      snippet: 
+      {
+        title:'PLATAFORMA FUERZA #10',
+        thumbnails:
+        {
+        default:{url:"https://i.ytimg.com/vi/JnVlxegwehM/default.jpg"}
+        }
+      }
+    }
+
+//terminan plataformas fuerzas
+
+//plataformas runner
+
+      this.playlistsmanual[10]={
+        id:"PLwt81QUNa7abjWbbOq8nLQ9QTbPxlx89i",
+        snippet: 
+        {
+          title:'LA RESISTENCIA RUNNER # 1',
+          thumbnails:
+          {
+          default:{url:"https://i.ytimg.com/vi/9bOhqTP0TbM/default.jpg"}
+          }
+        }
+      }
+      this.playlistsmanual[11]={
+        id:"PLwt81QUNa7aaoSDsgdXr1Cv8IwV87uZZe",
+        snippet: 
+        {
+          title:'LA RESISTENCIA RUNNER # 2',
+          thumbnails:
+          {
+          default:{url:"https://i.ytimg.com/vi/r91jW1skBBg/default.jpg"}
+          }
+        }
+      }
+      this.playlistsmanual[12]={
+        id:"PLwt81QUNa7aZWO2os2v9Wcvb-eSTFEQ3z",
+        snippet: 
+        {
+          title:'LA RESISTENCIA RUNNER # 3',
+          thumbnails:
+          {
+          default:{url:"https://i.ytimg.com/vi/Soec2ZCwdh0/default.jpg"}
+          }
+        }
 }
 
-this.playlistsmanual[1]={
+//plataformas runner
+
+
+this.playlistsmanual[13]={
   id:"PLwt81QUNa7abf8vEAAHEzID3FHtqLi6HK",
   snippet: 
   {
@@ -284,7 +427,7 @@ this.playlistsmanual[1]={
   }
 }
 
-this.playlistsmanual[2]={
+this.playlistsmanual[14]={
   id:"PLwt81QUNa7aZqfNY8Xc4W80mlEYL7e3eQ",
   snippet: 
   {
@@ -296,7 +439,7 @@ this.playlistsmanual[2]={
   }
 }
 
-this.playlistsmanual[2]={
+this.playlistsmanual[15]={
   id:"PLwt81QUNa7aYOtpMxogQfiaFYOw3aP1x_",
   snippet: 
   {
@@ -308,7 +451,7 @@ this.playlistsmanual[2]={
   }
 }
 
-this.playlistsmanual[3]={
+this.playlistsmanual[16]={
   id:"PLwt81QUNa7abyMzhTM1Omn16tBhQsNesC",
   snippet: 
   {
@@ -321,7 +464,7 @@ this.playlistsmanual[3]={
 }
 
 
-this.playlistsmanual[4]={
+this.playlistsmanual[17]={
   id:"PLwt81QUNa7aby2Q3_x986ocgWwM3eweWZ",
   snippet: 
   {
@@ -333,7 +476,7 @@ this.playlistsmanual[4]={
   }
 }
 
-this.playlistsmanual[5]={
+this.playlistsmanual[18]={
   id:"PLwt81QUNa7aalizTLlptDbU7HDdPNKdIZ",
   snippet: 
   {
