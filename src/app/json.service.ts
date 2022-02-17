@@ -44,7 +44,7 @@ export class JsonService {
 
   variasfunciones(data: any)
   {
-  var url = 'https://api.orongo2-0.ml/api/variasfunciones';
+  var url = 'https://nube.gq/api/variasfunciones';
   return this.http.post(url,data,
   {headers:new HttpHeaders({"Content-Type":'application/json'})});
   }
